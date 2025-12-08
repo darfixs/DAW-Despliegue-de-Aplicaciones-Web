@@ -27,7 +27,8 @@
 </div> 
 
 
-  
+ <div align="center">
+
  ## UNIT 0 - Introduction
 Exercises | Description
 -----------|------------
