@@ -17,7 +17,11 @@
 
 |        Course          |         Progress         | Total |
 |:---------------------:|:------------------------:|:-----:|
-|       **[**UNIT 0**](https://docs.google.com/document/d/1N-ePfly6uEPFOjIdiWBunZ2Ep3rY-c9tqu_On1L-7LY/edit?tab=t.0)**      | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 |  4/4  |
+|       **[**UNIT 0**](https://docs.google.com/document/d/1J_9wiu-rb3Q0rcXgKnL3mwzGfFzsxqnTXdrbjXeMqCo/edit?tab=t.0)**      | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 |  4/4  |
+|       **[**UNIT 1**](https://educacionadistancia.juntadeandalucia.es/centros/huelva/mod/url/view.php?id=39415)**      | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 |  4/4  |
+|       **[**UNIT 1**](https://drive.google.com/file/d/0B77Rr-MLZKvKdVJqUUQ1M25ObVU/view?resourcekey=0-Y3YYhgwjoWtP0W7CD2-GIQ)**      | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 |  4/4  |
+
+
 ---
 
 <div align="center">
@@ -35,5 +39,10 @@ Exercises | Description
  ## UNIT 1 - HTML
 Exercises | Description
 -----------|------------
-
-
+https://docs.google.com/document/d/1UXW284iQ4qGRJKStHYkJUOSnifq9p15ZtTX0aLNBoLo/edit?tab=t.0
+https://docs.google.com/document/d/1nPp--ysunQ6_ZUeRvGiNGAEnctFB9bkbz4P646ViKXA/edit?tab=t.0
+https://docs.google.com/document/d/16tPcoNfD7Sh76KGa3HGP-VEGbPkk9CwMmLPIOBN4pSo/edit?tab=t.0
+https://docs.google.com/document/d/1DMfn-eVt3igKTddTrKnqx1T_BL-RXnoatw31hUc05gw/edit?tab=t.0
+https://docs.google.com/document/d/1ArxWHGKrY7UOXsk2TacJVV5xtEQkZNIIJbFEkejp9qw/edit?tab=t.0
+https://docs.google.com/document/d/1meuRnPBtsHMEKMrtsxkGHuPm99V22yf4-VRziIgnHR8/edit?tab=t.0
+https://docs.google.com/document/d/1HXXgyF2LmuEa7fPDtWyOxOquR2w_t5a-p0rnKb-jsYE/edit?tab=t.0
