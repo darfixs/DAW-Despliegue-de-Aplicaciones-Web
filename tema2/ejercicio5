@@ -1,0 +1,98 @@
+BIND9 – SERVIDOR DNS CACHÉ Y FORWARDING
+
+Instalamos y configuramos BIND9 primero como servidor DNS caché y posteriormente como servidor forwarding.
+
+
+INSTALACIÓN DE BIND9
+
+Instalamos el servicio DNS.
+
+    sudo apt update
+    sudo apt install bind9 bind9utils bind9-doc
+
+
+CONFIGURACIÓN COMO SERVIDOR DNS CACHÉ
+
+Editamos el archivo de configuración principal.
+
+    sudo nano /etc/bind/named.conf.options
+
+Configuramos el servidor como caché, permitiendo consultas locales.
+
+    options {
+        directory "/var/cache/bind";
+
+        recursion yes;
+        allow-query { any; };
+
+        dnssec-validation auto;
+
+        listen-on { any; };
+        listen-on-v6 { any; };
+    };
+
+Guardamos los cambios.
+
+
+Comprobamos la sintaxis del archivo de configuración.
+
+    sudo named-checkconf
+
+Si no devuelve salida, la sintaxis es correcta.
+
+
+Reiniciamos el servicio y comprobamos el estado.
+
+    sudo systemctl restart bind9
+    sudo systemctl status bind9
+
+
+Visualizamos el log para comprobar que responde correctamente.
+
+    sudo tail -f /var/log/syslog
+
+
+CONFIGURACIÓN COMO SERVIDOR DNS FORWARDING
+
+Editamos de nuevo el archivo de opciones.
+
+    sudo nano /etc/bind/named.conf.options
+
+Añadimos servidores DNS externos para el reenvío de consultas.
+
+    options {
+        directory "/var/cache/bind";
+
+        recursion yes;
+        allow-query { any; };
+
+        forwarders {
+            8.8.8.8;
+            8.8.4.4;
+        };
+
+        forward only;
+
+        dnssec-validation auto;
+
+        listen-on { any; };
+        listen-on-v6 { any; };
+    };
+
+
+Comprobamos de nuevo la sintaxis del archivo.
+
+    sudo named-checkconf
+
+
+Reiniciamos el servicio BIND9.
+
+    sudo systemctl restart bind9
+
+
+Volvemos a revisar el archivo de log para verificar el funcionamiento.
+
+    sudo tail -f /var/log/syslog
+
+
+Con estas configuraciones usamos BIND9 primero como servidor DNS caché y después como servidor DNS forwarding, comprobando en ambos casos la sintaxis y el correcto funcionamiento mediante los logs del sistema.
