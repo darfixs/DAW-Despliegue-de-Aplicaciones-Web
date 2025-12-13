@@ -1,0 +1,168 @@
+ACTIVIDAD 2 – APACHE HTTP SERVER
+
+1. PUESTA EN MARCHA DE APACHE
+Iniciamos el servidor Apache y comprobamos que está funcionando correctamente.
+
+    sudo systemctl start apache2
+    sudo systemctl status apache2
+
+
+2. APACHE ESCUCHA EN EL PUERTO 81
+Editamos el archivo de configuración de puertos para que Apache escuche también en el puerto 81.
+
+    sudo nano /etc/apache2/ports.conf
+
+Añadimos:
+
+    Listen 80
+    Listen 81
+
+Reiniciamos el servicio:
+
+    sudo systemctl restart apache2
+
+
+3. AÑADIMOS EL DOMINIO marisma.intranet
+Editamos el fichero hosts para asociar el dominio a la IP local.
+
+    sudo nano /etc/hosts
+
+Añadimos:
+
+    127.0.0.1   marisma.intranet
+
+
+4. CONFIGURACIÓN DE ServerTokens
+Editamos el archivo de seguridad de Apache.
+
+    sudo nano /etc/apache2/conf-available/security.conf
+
+Cambiamos la directiva a:
+
+    ServerTokens Prod
+
+Reiniciamos Apache para aplicar los cambios.
+
+    sudo systemctl restart apache2
+
+
+5. CONFIGURACIÓN DE ServerSignature
+En el mismo archivo comprobamos la directiva ServerSignature.
+
+Activamos la firma del servidor:
+
+    ServerSignature On
+
+Probamos una página de error y comprobamos que aparece el pie de página.
+Después la desactivamos:
+
+    ServerSignature Off
+
+Reiniciamos Apache para verificar el funcionamiento.
+
+
+6. CREACIÓN DE DIRECTORIOS prueba Y prueba2
+Creamos dos directorios dentro del DocumentRoot y añadimos páginas de prueba.
+
+    sudo mkdir /var/www/html/prueba
+    sudo mkdir /var/www/html/prueba2
+
+    echo "<h1>Directorio prueba</h1>" | sudo tee /var/www/html/prueba/index.html
+    echo "<h1>Directorio prueba2</h1>" | sudo tee /var/www/html/prueba2/index.html
+
+
+7. REDIRECCIÓN DE prueba A prueba2
+Editamos el VirtualHost por defecto.
+
+    sudo nano /etc/apache2/sites-available/000-default.conf
+
+Añadimos la redirección:
+
+    Redirect permanent /prueba /prueba2
+
+Reiniciamos Apache.
+
+
+8. REDIRECCIÓN DE UNA SOLA PÁGINA
+Probamos a redireccionar únicamente una página concreta.
+
+    Redirect permanent /prueba/index.html /prueba2/index.html
+
+
+9. USO DE LA DIRECTIVA UserDir
+Activamos el módulo userdir.
+
+    sudo a2enmod userdir
+    sudo systemctl restart apache2
+
+Creamos el directorio public_html del usuario.
+
+    mkdir ~/public_html
+    echo "<h1>Pagina UserDir</h1>" > ~/public_html/index.html
+
+Accedemos desde el navegador con:
+
+    http://marisma.intranet/~usuario
+
+
+10. USO DE LA DIRECTIVA Alias
+Creamos un alias hacia el directorio public_html del usuario.
+
+    Alias /usuario /home/usuario/public_html
+
+
+11. DIRECTIVA Options E INDEXADO
+La directiva Options controla el comportamiento de los directorios.
+Comprobamos que Apache puede listar archivos si no existe index.html.
+
+Para desactivar el indexado usamos:
+
+    Options -Indexes
+
+
+
+ACTIVIDAD 2.2 – SCRIPTS
+
+
+SCRIPT 1 – AÑADIR PUERTO DE ESCUCHA
+Script que añade un puerto Listen si no existe.
+
+    #!/bin/bash
+    if [ $# -ne 1 ]; then
+        echo "Uso: $0 PUERTO"
+        exit 1
+    fi
+    grep -q "Listen $1" /etc/apache2/ports.conf || echo "Listen $1" | sudo tee -a /etc/apache2/ports.conf
+
+
+SCRIPT 2 – AÑADIR DOMINIO A HOSTS
+Script que añade una IP y un dominio si no existen.
+
+    #!/bin/bash
+    if [ $# -ne 2 ]; then
+        echo "Uso: $0 IP DOMINIO"
+        exit 1
+    fi
+    grep -q "$2" /etc/hosts || echo "$1 $2" | sudo tee -a /etc/hosts
+
+
+SCRIPT 3 – CREAR UNA PÁGINA WEB
+Script que crea una pagina web con título, cabecera y mensaje.
+
+    #!/bin/bash
+    if [ $# -ne 4 ]; then
+        echo "Uso: $0 RUTA TITULO CABECERA MENSAJE"
+        exit 1
+    fi
+
+    cat > $1 <<EOF
+    <html>
+        <head>
+            <title>$2</title>
+        </head>
+        <body>
+            <h1>$3</h1>
+            <p>$4</p>
+        </body>
+    </html>
+    EOF
