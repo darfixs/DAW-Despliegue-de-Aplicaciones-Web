@@ -1,0 +1,70 @@
+NSLOOKUP
+Usamos el comando nslookup para realizar distintas consultas DNS y analizar las respuestas obtenidas.
+
+
+CONSULTA DE SERVIDORES DNS DE LA UHU
+Consultamos al servidor DNS por defecto los servidores DNS del dominio uhu.es.
+    nslookup -type=NS uhu.es
+Obtenemos varias direcciones IP correspondientes a servidores DNS de la Universidad de Huelva.
+
+
+¿SON RESPUESTAS AUTORITATIVAS?
+No, las respuestas no son autoritativas porque provienen del servidor DNS por defecto y no directamente de un servidor autoritativo del dominio.
+
+
+CONSULTA DEL SERVIDOR DE CORREO DE uhu.es
+Consultamos los registros MX del dominio.
+    nslookup -type=MX uhu.es
+Obtenemos uno o varios servidores de correo asociados al dominio uhu.es.
+
+
+¿SON RESPUESTAS AUTORITATIVAS?
+No, por el mismo motivo: la consulta se realiza a través de un servidor intermedio.
+
+
+SERVIDOR AUTORITATIVO PRIMARIO DE uhu.es
+Consultamos el registro SOA del dominio.
+    nslookup -type=SOA uhu.es
+
+El servidor primario se identifica en el campo primary name server.
+La fecha de última actualización se obtiene mediante el número de serie (serial).
+La dirección de correo del administrador aparece en el campo responsible mail address.
+
+
+COMPROBACIÓN DE DNS INVERSO PARA dns-1.uhu.es
+Consultamos el DNS inverso de su dirección IP.
+    nslookup IP_dns-1.uhu.es
+
+Si devuelve el nombre dns-1.uhu.es, el DNS inverso está correctamente configurado.
+
+
+COMPROBACIÓN DE DNS INVERSO PARA www.bp.com
+Consultamos el DNS inverso de la IP asociada a www.bp.com.
+    nslookup IP_www.bp.com
+Si devuelve el nombre de dominio, el DNS inverso funciona correctamente.
+
+
+CONSULTA DE REGISTROS NS
+Por defecto nslookup devuelve registros de tipo A.
+Al consultar registros NS obtenemos los servidores DNS que resuelven un dominio.
+
+    nslookup -type=NS uhu.es
+
+
+CONSULTA DEL TLD “es”
+Consultamos directamente el dominio de primer nivel.
+    nslookup es
+No se obtiene respuesta porque nslookup busca registros A/AAAA y “es” no es un FQDN.
+Para resolverlo correctamente consultamos los registros NS.
+    nslookup -type=NS es
+
+
+CONSULTA DE www.google.com
+Consultamos las direcciones IP del dominio.
+    nslookup www.google.com
+Se obtienen varias direcciones IP distintas.
+
+
+¿PUEDE UN DOMINIO TENER VARIAS IP?
+Sí, un mismo nombre de dominio puede resolverse en varias direcciones IP distintas.
+Esto se utiliza para balanceo de carga y alta disponibilidad.
