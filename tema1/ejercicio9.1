@@ -1,0 +1,87 @@
+AUTENTICACIÓN BÁSICA EN APACHE
+
+Creamos los usuarios necesarios para la autenticación básica usando htpasswd.
+
+    sudo htpasswd -c /etc/apache2/.htpasswd usuario1
+    sudo htpasswd /etc/apache2/.htpasswd usuario2
+    sudo htpasswd /etc/apache2/.htpasswd usuario3
+    sudo htpasswd /etc/apache2/.htpasswd usuario4
+    sudo htpasswd /etc/apache2/.htpasswd usuario5
+
+
+Creamos el archivo de grupos y definimos los grupos solicitados.
+
+    sudo nano /etc/apache2/.htgroups
+
+Contenido del archivo:
+
+    grupo1: usuario1 usuario2
+    grupo2: usuario3 usuario4 usuario5
+
+
+Creamos los directorios privados.
+
+    sudo mkdir /var/www/html/privado1
+    sudo mkdir /var/www/html/privado2
+
+
+CONFIGURACIÓN DE AUTENTICACIÓN PARA privado1
+
+Configuramos el acceso para que puedan entrar todos los usuarios autenticados.
+
+    <Directory /var/www/html/privado1>
+        AuthType Basic
+        AuthName "Zona privada 1"
+        AuthUserFile /etc/apache2/.htpasswd
+        Require valid-user
+    </Directory>
+
+
+CONFIGURACIÓN DE AUTENTICACIÓN PARA privado2 (solo grupo1)
+
+Configuramos el acceso para que solo puedan entrar los usuarios del grupo1.
+
+    <Directory /var/www/html/privado2>
+        AuthType Basic
+        AuthName "Zona privada 2"
+        AuthUserFile /etc/apache2/.htpasswd
+        AuthGroupFile /etc/apache2/.htgroups
+        Require group grupo1
+    </Directory>
+
+
+CONTROL DE ACCESO CON SATISFY EN privado2
+
+Limitamos el acceso para que solo sea accesible desde localhost.
+
+    <Directory /var/www/html/privado2>
+        AuthType Basic
+        AuthName "Zona privada 2"
+        AuthUserFile /etc/apache2/.htpasswd
+        AuthGroupFile /etc/apache2/.htgroups
+        Require group grupo1
+        Require ip 127.0.0.1
+        Satisfy all
+    </Directory>
+
+Con Satisfy all es obligatorio cumplir tanto la autenticación de usuario como la restricción por IP.
+
+
+Probamos el comportamiento con Satisfy any.
+
+    <Directory /var/www/html/privado2>
+        AuthType Basic
+        AuthName "Zona privada 2"
+        AuthUserFile /etc/apache2/.htpasswd
+        AuthGroupFile /etc/apache2/.htgroups
+        Require group grupo1
+        Require ip 127.0.0.1
+        Satisfy any
+    </Directory>
+
+Con Satisfy any basta con cumplir una de las dos condiciones: o pertenecer al grupo o acceder desde localhost.
+
+
+Reiniciamos Apache para aplicar los cambios.
+
+    sudo systemctl restart apache2
