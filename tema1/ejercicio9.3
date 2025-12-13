@@ -1,0 +1,84 @@
+AUTENTICACIÓN MEDIANTE MOD_DBD EN APACHE
+
+Configuramos un directorio protegido cuya autenticación se realiza contra una base de datos MySQL usando el módulo mod_dbd.
+
+
+INSTALACIÓN DE MÓDULOS NECESARIOS
+
+Instalamos Apache, MySQL y los módulos necesarios para autenticación DBD.
+
+    sudo apt update
+    sudo apt install apache2 mysql-server libapache2-mod-authn-dbd libaprutil1-dbd-mysql
+
+
+Activamos los módulos requeridos.
+
+    sudo a2enmod authn_dbd
+    sudo a2enmod dbd
+    sudo systemctl restart apache2
+
+
+CREACIÓN DE BASE DE DATOS Y USUARIO
+
+Accedemos a MySQL.
+
+    sudo mysql
+
+Creamos la base de datos y el usuario.
+
+    CREATE DATABASE apache_auth;
+    CREATE USER 'apacheuser'@'localhost' IDENTIFIED BY 'password';
+    GRANT SELECT ON apache_auth.* TO 'apacheuser'@'localhost';
+    FLUSH PRIVILEGES;
+
+Creamos la tabla de usuarios.
+
+    USE apache_auth;
+    CREATE TABLE users (
+        username VARCHAR(50) NOT NULL,
+        password VARCHAR(255) NOT NULL
+    );
+
+Insertamos un usuario (contraseña cifrada con MD5).
+
+    INSERT INTO users VALUES ('usuario1', MD5('clave1'));
+
+
+CONFIGURACIÓN DE MOD_DBD
+
+Editamos la configuración global de Apache.
+
+    sudo nano /etc/apache2/apache2.conf
+
+Añadimos:
+
+    DBDriver mysql
+    DBDParams "host=localhost dbname=apache_auth user=apacheuser pass=password"
+    DBDMin  1
+    DBDKeep 2
+    DBDMax  10
+    DBDExptime 300
+
+
+CREAMOS EL DIRECTORIO PROTEGIDO
+
+    sudo mkdir /var/www/html/privado_dbd
+
+
+CONFIGURACIÓN DE AUTENTICACIÓN DEL DIRECTORIO
+
+    <Directory /var/www/html/privado_dbd>
+        AuthType Basic
+        AuthName "Zona protegida con DBD"
+        AuthBasicProvider dbd
+        AuthDBDUserPWQuery "SELECT password FROM users WHERE username = %s"
+        Require valid-user
+    </Directory>
+
+
+Reiniciamos Apache para aplicar los cambios.
+
+    sudo systemctl restart apache2
+
+
+Con esta configuración el acceso al directorio privado_dbd se valida contra usuarios almacenados en una base de datos MySQL mediante el módulo mod_dbd.
