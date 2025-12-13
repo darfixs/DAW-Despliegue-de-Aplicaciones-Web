@@ -1,0 +1,14 @@
+1. Antes de instalar cualquier programa, actualiza la lista de paquetes disponibles:
+  sudo apt update
+  
+    - Esto hace que Ubuntu sepa cuáles son las versiones más recientes de los programas que puede instalar.
+
+
+2. Usamos este comando para instalar el servidor web Apache:
+  sudo apt install apache2
+
+
+3. Abre el navegador y escribe:
+  http://ipdelservidor
+
+    - Si ves una página que dice algo como “It works!”, Apache está instalado correctamente.
