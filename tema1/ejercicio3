@@ -1,0 +1,65 @@
+DIRECTIVAS DE APACHE
+
+Indicamos la función básica, el valor por defecto y el archivo donde se define cada directiva.
+
+ServerName: nombre del servidor y puerto.
+    /etc/apache2/sites-enabled/000-default.conf
+    www.example.com
+
+ServerAdmin: correo del administrador de Apache.
+    /etc/apache2/sites-enabled/000-default.conf
+    webmaster@localhost
+
+ServerTokens: información enviada en las cabeceras HTTP.
+    /etc/apache2/apache2.conf
+    Full
+
+
+DocumentRoot: directorio desde el que se sirven los documentos.
+    /etc/apache2/sites-enabled/000-default.conf
+    /var/www
+
+ErrorLog: archivo donde se registran los errores.
+    /etc/apache2/sites-enabled/000-default.conf
+    ${APACHE_LOG_DIR}/error.log
+
+APACHE_LOG_DIR: variable que define el directorio de logs.
+    /etc/apache2/envvars
+    /var/log/apache2
+
+CustomLog: archivo de registro de accesos.
+    /etc/apache2/sites-enabled/000-default.conf
+    ${APACHE_LOG_DIR}/access.log
+
+ServerRoot: directorio base de Apache.
+    /etc/apache2/apache2.conf
+    /etc/apache2
+
+
+Timeout: tiempo máximo de espera por petición.
+    /etc/apache2/apache2.conf
+    300
+
+KeepAlive: permite varias peticiones en una misma conexión.
+    /etc/apache2/apache2.conf
+    On
+
+MaxKeepAliveRequests: número máximo de peticiones por conexión.
+    /etc/apache2/apache2.conf
+    100
+
+KeepAliveTimeout: tiempo de espera entre peticiones.
+    /etc/apache2/apache2.conf
+    5
+
+
+LogLevel: nivel de detalle de los logs.
+    /etc/apache2/apache2.conf
+    warn
+
+LogFormat: formato de los registros.
+    /etc/apache2/apache2.conf
+
+CustomLog: formato usado para el log de accesos.
+    /etc/apache2/sites-enabled/000-default.conf
+    combined
