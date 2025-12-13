@@ -1,0 +1,65 @@
+CONTROL DE ACCESO EN APACHE
+
+Creamos dos directorios para trabajar con control de acceso.
+
+    sudo mkdir /var/www/html/dir1
+    sudo mkdir /var/www/html/dir2
+
+
+DIFERENCIA ENTRE Order Deny,Allow Y Order Allow,Deny
+
+Order Deny,Allow:
+Primero se aplican las reglas Deny y después Allow. Por defecto se permite el acceso, salvo lo denegado.
+
+Equivalente con Require:
+    Require ip 192.168.1.100
+
+Order Allow,Deny:
+Primero se aplican las reglas Allow y después Deny. Por defecto se deniega el acceso, salvo lo permitido.
+
+Equivalente con Require:
+    Require ip 192.168.1.100
+
+
+CONFIGURACIÓN DE ACCESO PARA dir1
+
+Permitimos el acceso desde la IP 10.3.0.100:
+
+    <Directory /var/www/html/dir1>
+        Require ip 10.3.0.100
+    </Directory>
+
+Permitimos el acceso desde el dominio marisma.intranet:
+
+    <Directory /var/www/html/dir1>
+        Require host marisma.intranet
+    </Directory>
+
+Permitimos el acceso desde cualquier subdominio de marisma.intranet:
+
+    <Directory /var/www/html/dir1>
+        Require host .marisma.intranet
+    </Directory>
+
+Permitimos el acceso desde 10.3.0.100 con máscara 255.255.0.0:
+
+    <Directory /var/www/html/dir1>
+        Require ip 10.3.0.0/16
+    </Directory>
+
+Permitimos el acceso a marisma.intranet y denegamos 10.3.0.101:
+
+    <Directory /var/www/html/dir1>
+        Require host marisma.intranet
+        Require not ip 10.3.0.101
+    </Directory>
+
+
+CONFIGURACIÓN DE ACCESO PARA dir2
+
+Permitimos el acceso desde la red 10.3.0.100/8 y denegamos marisma.intranet:
+
+    <Directory /var/www/html/dir2>
+        Require ip 10.0.0.0/8
+        Require not host marisma.intranet
+    </Directory>
