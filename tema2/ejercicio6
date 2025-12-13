@@ -1,0 +1,72 @@
+MASTER DNS SERVER – BIND9
+Configuramos BIND9 como servidor DNS autoritativo creando una zona directa y otra inversa para el dominio marisma.intranet.
+
+CREACIÓN DE ZONAS
+Editamos el fichero de zonas locales.
+sudo nano /etc/bind/named.conf.local
+
+Definimos la zona directa y la inversa (red 10.3.0.0/24).
+    zone "marisma.intranet" {
+        type master;
+        file "/etc/bind/db.marisma.intranet";
+    };
+
+    zone "0.3.10.in-addr.arpa" {
+        type master;
+        file "/etc/bind/db.10.3.0";
+    };
+
+ZONA DIRECTA
+    sudo nano /etc/bind/db.marisma.intranet
+    
+    $TTL 86400
+    @   IN SOA ns1.marisma.intranet. admin.marisma.intranet. (
+            2025010101 3600 1800 604800 86400 )
+        IN NS ns1.marisma.intranet.
+
+    ns1           IN A 10.3.0.1
+    ftp1          IN A 10.3.0.2
+    mail1         IN A 10.3.0.3
+    mail2         IN A 10.3.0.4
+    www           IN A 10.3.0.5
+    departamentos IN A 10.3.0.6
+
+    @ IN MX 10 mail1.marisma.intranet.
+    @ IN MX 20 mail2.marisma.intranet.
+
+ZONA INVERSA
+    sudo nano /etc/bind/db.10.3.0
+
+    $TTL 86400
+    @   IN SOA ns1.marisma.intranet. admin.marisma.intranet. (
+            2025010101 3600 1800 604800 86400 )
+        IN NS ns1.marisma.intranet.
+
+    1 IN PTR ns1.marisma.intranet.
+    2 IN PTR ftp1.marisma.intranet.
+    3 IN PTR mail1.marisma.intranet.
+    4 IN PTR mail2.marisma.intranet.
+    5 IN PTR www.marisma.intranet.
+    6 IN PTR departamentos.marisma.intranet.
+
+COMPROBACIÓN Y ARRANQUE
+
+    sudo named-checkconf
+    sudo named-checkzone marisma.intranet /etc/bind/db.marisma.intranet
+    sudo named-checkzone 0.3.10.in-addr.arpa /etc/bind/db.10.3.0
+    sudo systemctl restart bind9
+
+CONFIGURACIÓN DEL CLIENTE
+
+    sudo nano /etc/resolv.conf
+    nameserver 10.3.0.1
+
+COMPROBACIONES DNS
+
+    nslookup -type=SOA marisma.intranet
+    nslookup -type=NS marisma.intranet
+    nslookup -type=MX marisma.intranet
+    nslookup www.marisma.intranet
+    nslookup departamentos.marisma.intranet
+    nslookup 10.3.0.5
+    nslookup 10.3.0.6
