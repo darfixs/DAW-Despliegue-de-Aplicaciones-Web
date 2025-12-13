@@ -1,0 +1,20 @@
+Virtual host
+Se recomienda echar un vistazo a la documentación de Apache sobre hosting virtual
+https://httpd.apache.org/docs/2.4/es/vhosts/
+
+Ejercicios de virtual host
+Lee la documentación de Apache sobre hosting virtual. 
+Lee el artículo siguiente y lleva a cabo la práctica propuesta:
+https://www.digitalocean.com/community/tutorials/como-configurar-virtual-host-de-apache-en-ubuntu-14-04-lts-es
+
+
+Otros enlaces:
+Integrar una máquina virtual en una red local
+http://geekland.eu/integrar-maquina-virtual-en-una-red-local/
+Documentacion sobre hosting virtual en Apache
+https://httpd.apache.org/docs/2.0/es/vhosts/
+Configuring virtual network interfaces in linux
+http://linuxconfig.org/configuring-virtual-network-interfaces-in-linux
+Adding a second ip address to an existing network adapter on windows
+https://www.oclc.org/support/services/ezproxy/documentation/technote/2w.en.html
+
