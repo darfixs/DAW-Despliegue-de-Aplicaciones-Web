@@ -1,0 +1,61 @@
+AUTENTICACIÓN DIGEST EN APACHE Y PHPMYADMIN
+
+Trabajamos con autenticación Digest usando el módulo mod_auth_digest y la herramienta htdigest.
+
+
+Creamos los subdirectorios grupo1 y grupo2 dentro del host virtual por defecto.
+
+    sudo mkdir /var/www/html/grupo1
+    sudo mkdir /var/www/html/grupo2
+
+
+Creamos el archivo de usuarios Digest y añadimos usuarios con distintos dominios (realm).
+
+    sudo htdigest -c /etc/apache2/.htdigest dominio1 usuario1
+    sudo htdigest /etc/apache2/.htdigest dominio1 usuario2
+    sudo htdigest /etc/apache2/.htdigest dominio2 usuario3
+    sudo htdigest /etc/apache2/.htdigest dominio2 usuario4
+
+
+CONFIGURACIÓN DE AUTENTICACIÓN PARA grupo1
+
+Configuramos el acceso para que solo puedan acceder los usuarios del dominio dominio1.
+
+    <Directory /var/www/html/grupo1>
+        AuthType Digest
+        AuthName "dominio1"
+        AuthDigestProvider file
+        AuthUserFile /etc/apache2/.htdigest
+        Require valid-user
+    </Directory>
+
+
+CONFIGURACIÓN DE AUTENTICACIÓN PARA grupo2
+
+Configuramos el acceso para que solo puedan acceder los usuarios del dominio dominio2.
+
+    <Directory /var/www/html/grupo2>
+        AuthType Digest
+        AuthName "dominio2"
+        AuthDigestProvider file
+        AuthUserFile /etc/apache2/.htdigest
+        Require valid-user
+    </Directory>
+
+
+Reiniciamos Apache para aplicar la configuración.
+
+    sudo systemctl restart apache2
+
+
+INSTALACIÓN DE PHPMYADMIN
+
+Instalamos phpMyAdmin desde los repositorios de Ubuntu.
+
+    sudo apt update
+    sudo apt install phpmyadmin
+
+Durante la instalación seleccionamos Apache2 como servidor web y configuramos la base de datos automáticamente.
+
+
+Con esta configuración usamos autenticación Digest para proteger directorios y phpMyAdmin para la gestión de bases de datos desde el navegador.
