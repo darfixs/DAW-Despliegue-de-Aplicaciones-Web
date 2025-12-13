@@ -1,0 +1,40 @@
+¿Qué es la pila de protocolos usados por HTTP?
+  HTTP usa la pila TCP/IP:
+  HTTP (aplicación)
+  TCP (transporte)
+  IP (red)
+
+Componentes de una URL
+  Protocolo (http/https)
+  Dominio o host
+  Ruta
+
+Pasos en la recuperación de una página web mediante HTTP
+1. El navegador obtiene la IP (DNS)
+2. Se conecta al servidor
+3. Envía una petición HTTP
+4. El servidor responde
+5. El navegador muestra la página
+
+Diferencia entre páginas dinámicas y estáticas
+  Estáticas: siempre muestran el mismo contenido
+  Dinámicas: el contenido cambia según el usuario o datos
+
+¿Cómo usar telnet para acceder a un servidor web?
+Se usa telnet al puerto 80 y se escribe una petición HTTP manualmente.
+
+Request – Métodos principales
+  GET: pedir datos
+  POST: enviar datos
+  HEAD: solo cabeceras
+
+Response – Códigos
+  200: correcto
+  404: no encontrado
+  500: error del servidor
+
+Content-Type – Tipos principales
+  text/html
+  image/jpeg
+  application/json
+  text/css
