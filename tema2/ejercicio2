@@ -1,0 +1,69 @@
+
+DNS – TEORÍA
+
+Explicamos las principales configuraciones de servidores DNS junto con sus ventajas e inconvenientes.
+
+
+SERVIDOR DNS AUTORITATIVO
+
+Es el servidor que contiene la información oficial de un dominio y responde con autoridad.
+
+Ventajas:
+    Proporciona información exacta y definitiva del dominio.
+    Es imprescindible para que un dominio funcione en Internet.
+
+Inconvenientes:
+    No realiza búsquedas recursivas.
+    Requiere mantenimiento y configuración correcta de las zonas.
+
+
+SERVIDOR DNS CACHÉ (RECURSIVO)
+
+Resuelve consultas preguntando a otros servidores DNS y guarda las respuestas en caché.
+
+Ventajas:
+    Acelera las consultas DNS.
+    Reduce el tráfico hacia servidores externos.
+
+Inconvenientes:
+    No tiene información propia de dominios.
+    La información puede quedar obsoleta hasta que expire la caché.
+
+
+SERVIDOR DNS FORWARDING
+
+Reenvía las consultas DNS a otros servidores externos en lugar de resolverlas directamente.
+
+Ventajas:
+    Configuración sencilla.
+    Permite centralizar las consultas DNS.
+
+Inconvenientes:
+    Depende de servidores externos.
+    Puede ser más lento si el servidor de reenvío falla.
+
+
+SERVIDOR DNS MIXTO
+
+Combina funciones de servidor autoritativo y servidor caché.
+
+Ventajas:
+    Muy flexible.
+    Puede resolver dominios propios y externos.
+
+Inconvenientes:
+    Configuración más compleja.
+    Mayor carga y responsabilidad sobre el servidor.
+
+
+SERVIDOR DNS SOLO SECUNDARIO
+
+Mantiene una copia de las zonas de un servidor primario.
+
+Ventajas:
+    Aumenta la disponibilidad.
+    Sirve como respaldo del servidor principal.
+
+Inconvenientes:
+    No permite modificar zonas directamente.
+    Depende del servidor primario para actualizarse.
