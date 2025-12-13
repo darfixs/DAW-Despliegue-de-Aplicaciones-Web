@@ -57,6 +57,13 @@ Exercises | Description
 [Exercise 9.3](https://docs.google.com/document/d/1GfL8r7-mVGn9nOcKPvS4tXhI3eLi83vwmcH3NL3hx7Q/edit?tab=t.0) |🎑 [Authentication. MySQL](tema1/ejercicio9.3)
 [Exercise 10](https://docs.google.com/document/d/1XpuspoxxmbS4LUV2-OYJllhhOe3bFKZEE-kowHJZau4/edit?tab=t.0) |🎢 [SSL](tema1/ejercicio10)
 
+
+
+ ## Trabajo - Web Servers
+Project | Description
+-----------|------------
+ [**Statement**](https://docs.google.com/document/d/1GeqheYSqSlfVn21NoCcNrwYZR-Yn52mb8AFSOLSdhWM/edit?tab=t.0) | 📖 **Points of the project**
+Result|🎁 [PDF Content](tema1/trabajo1trimestre)
 ---
 <div align="center">
   <img src="https://i.pinimg.com/736x/86/85/2d/86852d609c3b99c983a70c83dd587ca0.jpg" style="width: 200%; height: auto;">
