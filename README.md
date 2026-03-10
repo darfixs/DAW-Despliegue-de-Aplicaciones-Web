@@ -1,37 +1,3 @@
-
-# Checklist de compañías
-
-- [ ] **SNELL** `[GMAIL]`
-  - [ ] Enero
-  - [ ] Febrero
-
-- [ ] **HUEVOS MARTÍN** `[GMAIL]`
-  - [ ] Enero
-  - [ ] Febrero
-
-- [ ] **MAR Y SIERRA** `[WASA]`
-  - [ ] Enero
-  - [ ] Febrero
-
-- [ ] **ELABORADOS DANIEL Y RAUL** `[WASA]`
-  - [ ] Enero
-  - [ ] Febrero
-  - [ ] Última de enero rectificada
-
-- [ ] **MONBAKE** `[GESTIONANDOSE]`
-  - [ ] Enero
-  - [ ] Febrero
-
-- [ ] **IBERELECTRICA LUZ** `[GMAIL]`
-  - [ ] Enero
-  - [ ] Febrero
-
-- [ ] **IBERELECTRICA GAS** `[GMAIL]`
-  - [ ] Enero
-  - [ ] Febrero
-
-
-
 # *The Batcave of Web Application Deployment*
  <div align="center">
   <img src="https://i.pinimg.com/736x/95/c2/0b/95c20b9cf72c2259d64258c344c6bde9.jpg" style="width: 100%; height: auto;">
