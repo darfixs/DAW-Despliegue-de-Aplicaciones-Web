@@ -101,3 +101,13 @@ Exercises | Description
 [Exercise 4](https://docs.google.com/document/d/1mmfYZAXNPySvozUEa531FahRgSizjhGFSdjvhhyK78U/edit?tab=t.0) |💚 [Docker 4](tema5/ejercicio4)
 [Exercise 5](https://docs.google.com/document/d/1cLkXHdUum_wrlnXD6qCFQreZbYviY_WhiSYkmJY9T6k/edit?tab=t.0)|💙 [Docker 5](tema5/ejercicio5)
 [Exercise 6](https://docs.google.com/document/d/1j3h4c5Yfc2IW5BUB-htSN55rNGa-kdpLRDo2o8AqYzU/edit?tab=t.0)|🤍 [Docker 6](tema5/ejercicio6)
+
+---
+<div align="center">
+  <img src="https://i.pinimg.com/736x/86/85/2d/86852d609c3b99c983a70c83dd587ca0.jpg" style="width: 200%; height: auto;">
+</div> 
+
+ ## Servidor de Alojamiento Web
+Project | Description
+-----------|------------
+[**Acceder al proyecto**](https://github.com/darfixs/DAW-Despliegue-de-Aplicaciones-Web/tree/main/Practica2Trimestre) | 🖥️ **Proyecto Final - Servidor de Alojamiento Web**
