@@ -105,7 +105,7 @@ Con el repositorio registrado, ya podemos instalar Docker. Se instalan los sigui
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-![Captura paso 5](5.png)
+![Captura paso 5](4.png)
 
 ---
 
@@ -120,7 +120,7 @@ newgrp docker
 
 `usermod -aG` agrega el usuario al grupo indicado sin quitarlo de sus grupos actuales. El comando `newgrp docker` aplica el cambio de grupo en la sesion actual sin necesidad de cerrar sesion.
 
-![Captura paso 6](6.png)
+![Captura paso 6](5.png)
 
 ---
 
@@ -134,7 +134,7 @@ sudo systemctl status docker
 
 La salida debe mostrar el estado `active (running)` en verde, lo que confirma que el daemon esta funcionando correctamente y arrancara automaticamente en cada inicio del sistema.
 
-![Captura paso 7](7.png)
+![Captura paso 7](6.png)
 
 ---
 
@@ -148,7 +148,7 @@ docker run hello-world
 
 > **Nota:** Si la imagen no esta descargada localmente, Docker la obtiene automaticamente desde Docker Hub. La salida del contenedor incluye un mensaje explicando los pasos que Docker realizo para ejecutar ese contenedor.
 
-![Captura paso 8](8.png)
+![Captura paso 8](7.png)
 
 ---
 
