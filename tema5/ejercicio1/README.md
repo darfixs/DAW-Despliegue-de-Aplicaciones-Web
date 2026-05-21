@@ -85,7 +85,7 @@ Una vez agregado el repositorio, actualizamos el indice de paquetes para que APT
 sudo apt update
 ```
 
-![Captura paso 4](4.png)
+![Captura paso 4](3.png)
 
 ---
 
