@@ -96,7 +96,6 @@ Exercises | Description
 [**Docker Get Started**](https://docs.docker.com/get-started/) | 📖 **Introduction**
 [**Docker CV**](https://docker-curriculum.com/) | 📖 **Docker CV support page**
 [**Course**](https://github.com/josedom24/curso_docker_ies) | 📖 **Github Docker repository by Ignacio**
-[Exercise 1](https://docs.google.com/document/d/19r61MFhswfDKwhwPpewfvcE8TjpbA9Ihf6J8J15PQvo/edit?tab=t.0)|❤️ [Docker 0](tema5/ejercicio0)
 [Exercise 1](https://docs.google.com/document/d/1HE51pkqsTtjyOC40XQWP9MFjTMTXc-HYjVxT_UaKCpU/edit?tab=t.0)|🩷 [Docker 1](tema5/ejercicio1)
 [Exercise 2](https://docs.google.com/document/d/1aw-7nDdtLTgCLiIaW6CTQ7fTRRdVSi07_INrbnmM55M/edit?tab=t.0)|🧡 [Docker 2](tema5/ejercicio2)
 [Exercise 3](https://docs.google.com/document/d/1oXWiIOeo_E19RI7CCiqu_sqHYHk0tDx6pPKaLeI6uH8/edit?tab=t.0)|💛 [Docker 3](tema5/ejercicio3)
